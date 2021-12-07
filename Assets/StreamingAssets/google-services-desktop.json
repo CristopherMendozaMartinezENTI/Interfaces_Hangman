@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "923331623299",
+    "project_id": "interfaceshangman",
+    "storage_bucket": "interfaceshangman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923331623299:android:3e455e9f3e3b6bcc869eb6",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Interfaces_Hangman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923331623299-op90193sr9a1o38itqp8fce5tst9dk92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEdzecsZse3bTpiukqYmhvLT81-LFK2Tw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923331623299-op90193sr9a1o38itqp8fce5tst9dk92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
