@@ -17,6 +17,7 @@ public class GoogleService : MonoBehaviour
                 // Create and hold a reference to your FirebaseApp,
                 // where app is a Firebase.FirebaseApp property of your application class.
                 app = Firebase.FirebaseApp.DefaultInstance;
+                SignUp();
                 Debug.Log("Firebase Ok");
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
             }
