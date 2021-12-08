@@ -19,27 +19,52 @@ public class MenuPanelController
         .HomeButtonPressed
         .Subscribe((_) =>
         {
-            _homePanelViewModel.IsVisible.Value = true;
-            _scorePanelViewModel.IsVisible.Value = false;
-            _settingsPanelViewModel.IsVisible.Value = false;
+            if (!_homePanelViewModel.IsVisible.Value)
+            {
+                _homePanelViewModel.IsVisible.Value = true;
+                _scorePanelViewModel.IsVisible.Value = false;
+                _settingsPanelViewModel.IsVisible.Value = false;
+            }
+            else
+            {
+                //Ya estamos en el menu Home
+            }
         });
 
         _menuPanelViewModel
          .ScoreButtonPressed
          .Subscribe((_) =>
          {
-             _homePanelViewModel.IsVisible.Value = false;
-             _scorePanelViewModel.IsVisible.Value = true;
-             _settingsPanelViewModel.IsVisible.Value = false;
+             
+             if (!scorePanelViewModel.IsVisible.Value)
+             {
+                _scorePanelViewModel.IsFromTheLeft.Value = _homePanelViewModel.IsVisible.Value ? false : true;
+                
+                _homePanelViewModel.IsVisible.Value = false;
+                _scorePanelViewModel.IsVisible.Value = true;
+                _settingsPanelViewModel.IsVisible.Value = false;
+             }
+             else
+             {
+                 //Ya estamos en el menu Score
+             }
+             
          });
 
         _menuPanelViewModel
         .SettingsButtonPressed
         .Subscribe((_) =>
         {
-            _homePanelViewModel.IsVisible.Value = false;
-            _scorePanelViewModel.IsVisible.Value = false;
-            _settingsPanelViewModel.IsVisible.Value = true;
+            if (!_settingsPanelViewModel.IsVisible.Value)
+            {
+                _homePanelViewModel.IsVisible.Value = false;
+                _scorePanelViewModel.IsVisible.Value = false;
+                _settingsPanelViewModel.IsVisible.Value = true;
+            }
+            else
+            {
+                //Ya estamos en el menu Settings
+            }            
         });
     }
 }
