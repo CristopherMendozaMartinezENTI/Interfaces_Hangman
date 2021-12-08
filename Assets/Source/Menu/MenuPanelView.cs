@@ -7,6 +7,8 @@ using System.Linq;
 
 public class MenuPanelView : MonoBehaviour
 {
+    [SerializeField] private RectTransform _panel;
+    public RectTransform Panel { get => _panel; }
     [SerializeField] private RectTransform _homeContainer;
     [SerializeField] private RectTransform _scoreContainer;
     [SerializeField] private RectTransform _settingsContainer;
