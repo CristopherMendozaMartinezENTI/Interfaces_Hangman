@@ -11,8 +11,11 @@ public class Installer : MonoBehaviour
     [SerializeField] private ScorePanelView _scorePanelPrefab;
     [SerializeField] private SettingsPanelView _settingsPanelPrefab;
 
-    void Awake()
+    [SerializeField] private FirebaseLoginService firebaseService;
+
+    private void Awake()
     {
+        firebaseService.AnonimSignUp();
         var homePanelView = Instantiate(_homePanelPrefab, _CanvasParent);
         var scorePanelView = Instantiate(_scorePanelPrefab, _CanvasParent);
         var settingPanelView = Instantiate(_settingsPanelPrefab, _CanvasParent);

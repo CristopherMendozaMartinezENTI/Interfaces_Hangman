@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoogleService : MonoBehaviour
+public class FirebaseLoginService : MonoBehaviour
 {
     //Nos conectamos a Firebase.
     private Firebase.FirebaseApp app;
     private Firebase.Auth.FirebaseUser newUser;
     // Start is called before the first frame update
-    private void Start()
+    public void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
@@ -17,7 +17,6 @@ public class GoogleService : MonoBehaviour
                 // Create and hold a reference to your FirebaseApp,
                 // where app is a Firebase.FirebaseApp property of your application class.
                 app = Firebase.FirebaseApp.DefaultInstance;
-                SignUp();
                 Debug.Log("Firebase Ok");
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
             }
@@ -31,7 +30,7 @@ public class GoogleService : MonoBehaviour
         });
     }
 
-    public void SignUp()
+    public void AnonimSignUp()
     {
         Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         auth.SignInAnonymouslyAsync().ContinueWith(task => {

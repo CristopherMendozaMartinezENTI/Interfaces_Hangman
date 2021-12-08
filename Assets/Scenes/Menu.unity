@@ -189,6 +189,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &525480144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525480146}
+  - component: {fileID: 525480145}
+  m_Layer: 0
+  m_Name: FirabaseService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &525480145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525480144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd23eec30a6f348bb31af046c8bc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &525480146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525480144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &923124492
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +280,7 @@ MonoBehaviour:
   _homePanelPrefab: {fileID: 4786687923518958773, guid: a9bc737bdb2e7b540979f4794009c213, type: 3}
   _scorePanelPrefab: {fileID: 2871673370947443568, guid: a292e3577ff9e5a47b343da5f759dd7d, type: 3}
   _settingsPanelPrefab: {fileID: 7973797107909844941, guid: 6e287e9e2c6fcd94cb87394bf78ed566, type: 3}
+  firebaseService: {fileID: 525480145}
 --- !u!1 &1389163896
 GameObject:
   m_ObjectHideFlags: 0
