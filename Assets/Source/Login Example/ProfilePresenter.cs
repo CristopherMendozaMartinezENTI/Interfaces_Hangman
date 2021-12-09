@@ -1,4 +1,4 @@
-public class ProfilePresenter
+public class ProfilePresenter : Presenter
 {
     private readonly ProfileViewModel _model;
 

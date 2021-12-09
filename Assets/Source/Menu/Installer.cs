@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Installer : MonoBehaviour
 {
@@ -20,10 +21,14 @@ public class Installer : MonoBehaviour
     private HomePanelController _homePanelController;
     private EditUsernamePanelController _editUsernamePanelController;
 
+
+    private List<IDisposable> _disposables = new List<IDisposable>();
+
     private void Awake()
     {
         var loginUseCase = new FirebaseLogin(_firebaseService);
         var authPersistanceUseCase = new FirebaseAuthPersistance(_firebaseService);
+        _disposables.Add(authPersistanceUseCase);
         var databaseUseCase = new FirestoreDatabase(_firestoreService);
 
         authPersistanceUseCase.SetAuthenticationPersistance();
@@ -39,10 +44,15 @@ public class Installer : MonoBehaviour
         homePanelView.Panel.SetAsLastSibling();
 
         var menuPanelViewModel = new MenuPanelViewModel();
+        _disposables.Add(menuPanelViewModel);
         var homePanelViewModel = new HomePanelViewModel();
+        _disposables.Add(homePanelViewModel);
         var scorePanelViewModel = new ScorePanelViewModel();
+        _disposables.Add(scorePanelViewModel);
         var settingsPanelViewModel = new SettingsPanelViewModel();
+        _disposables.Add(settingsPanelViewModel);
         var editUsernamePanelViewModel = new EditUsernamePanelViewModel();
+        _disposables.Add(editUsernamePanelViewModel);
 
         menuPanel.SetViewModel(menuPanelViewModel);
         homePanelView.SetViewModel(homePanelViewModel);
@@ -51,10 +61,14 @@ public class Installer : MonoBehaviour
         editUsernamePanelView.SetViewModel(editUsernamePanelViewModel);
 
         var homePanelPresenter = new HomePanelPresenter(homePanelViewModel);
+        _disposables.Add(homePanelPresenter);
 
         _menuPanelController = new MenuPanelController(menuPanelViewModel, homePanelViewModel, scorePanelViewModel, settingsPanelViewModel);
+        _disposables.Add(_menuPanelController);
         _homePanelController = new HomePanelController(homePanelViewModel, editUsernamePanelViewModel, loginUseCase, databaseUseCase);
+        _disposables.Add(_homePanelController);
         _editUsernamePanelController = new EditUsernamePanelController(editUsernamePanelViewModel, databaseUseCase);
+        _disposables.Add(_editUsernamePanelController);
 
         //TODO: Set Home as default starting menu
     }
@@ -62,5 +76,13 @@ public class Installer : MonoBehaviour
     private void Start() 
     {
         _homePanelController.Initialize();
+    }
+
+    private void OnDestroy() {
+        foreach (var disposable in _disposables)
+        {
+            if (disposable != null)
+                disposable.Dispose();
+        }        
     }
 }

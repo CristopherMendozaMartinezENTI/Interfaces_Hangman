@@ -1,6 +1,6 @@
 using UniRx;
 
-public class MainMenuViewModel
+public class MainMenuViewModel : ViewModel
 {
     public readonly ReactiveCommand LoginButtonPressed;
     public readonly ReactiveProperty<bool> IsVisible;

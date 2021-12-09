@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
 
-public class ScorePanelView : MonoBehaviour
+public class ScorePanelView : View
 {
     [SerializeField] private RectTransform _panel;
     public RectTransform Panel { get => _panel; }
@@ -14,15 +14,16 @@ public class ScorePanelView : MonoBehaviour
 
     private ScorePanelViewModel _viewModel;
 
-    public void SetViewModel(ScorePanelViewModel viewModel)
+    public override void SetViewModel(ViewModel viewModel)
     {
-        _viewModel = viewModel;
+        _viewModel = viewModel as ScorePanelViewModel;
 
         _viewModel
             .IsFromTheLeft
             .Subscribe((isFromTheLeft) => {
                 _startingSide = isFromTheLeft ? DoTweenPanelSwipeController.StartingSide.LEFT : DoTweenPanelSwipeController.StartingSide.RIGHT;
-            });
+            })
+            .AddTo(_disposables);
 
         _viewModel
             .IsVisible
@@ -35,6 +36,7 @@ public class ScorePanelView : MonoBehaviour
                     _swipeController.Animate(_startingSide);
                 }
                 //gameObject.transform.DOShakePosition(1.5f, 10.0f);
-            });
+            })
+            .AddTo(_disposables);
     }
 }

@@ -4,7 +4,7 @@ using UniRx;
 using DG.Tweening;
 using TMPro;
 
-public class EditUsernamePanelView : MonoBehaviour
+public class EditUsernamePanelView : View
 {
     private EditUsernamePanelViewModel _viewModel;
 
@@ -12,29 +12,36 @@ public class EditUsernamePanelView : MonoBehaviour
     [SerializeField] private Button _backgroundButton;
     [SerializeField] private TMP_InputField _newUsernameInputField;
 
-    public void SetViewModel(EditUsernamePanelViewModel viewModel)
+    public override void SetViewModel(ViewModel viewModel)
     {
-        _viewModel = viewModel;
+        _viewModel = viewModel as EditUsernamePanelViewModel;
 
         _viewModel
             .IsVisible
             .Subscribe((isVisible) => {
                 gameObject.SetActive(isVisible);
-            });
+            })
+            .AddTo(_disposables);
         
-        _saveButton.onClick.AddListener(() => {
-            _viewModel.SaveButtonPressed.Execute(_newUsernameInputField.text);
-        }
-        );
+        _saveButton
+            .OnClickAsObservable()
+            .Subscribe((_) => {
+                _viewModel.SaveButtonPressed.Execute(_newUsernameInputField.text);
+            })
+            .AddTo(_disposables);
 
-        _newUsernameInputField.onSubmit.AddListener((_) => {
-            _viewModel.InputFieldSubmitted.Execute(_newUsernameInputField.text);
-        }
-        );
+        _backgroundButton
+            .OnClickAsObservable()
+            .Subscribe((_) => {
+                _viewModel.BackgroundButtonPressed.Execute();
+            })
+            .AddTo(_disposables);
 
-        _backgroundButton.onClick.AddListener(() => {
-            _viewModel.BackgroundButtonPressed.Execute();
-        }
-        );
+        _newUsernameInputField
+            .onSubmit.AsObservable()
+            .Subscribe((_) => {
+                _viewModel.InputFieldSubmitted.Execute(_newUsernameInputField.text);
+            })
+            .AddTo(_disposables);
     }
 }

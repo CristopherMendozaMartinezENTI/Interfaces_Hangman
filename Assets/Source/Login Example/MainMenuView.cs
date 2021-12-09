@@ -7,9 +7,9 @@ public class MainMenuView : View
     [SerializeField] private Button _loginButton;
     private MainMenuViewModel _model;
 
-    public void Configure(MainMenuViewModel model)
+    public override void SetViewModel(ViewModel model)
     {
-        _model = model;
+        _model = model as MainMenuViewModel;
 
         _model
             .IsVisible
@@ -17,7 +17,10 @@ public class MainMenuView : View
             .AddTo(_disposables);
 
         _loginButton
-            .onClick
-            .AddListener(() => { _model.LoginButtonPressed.Execute(); });
+            .OnClickAsObservable()
+            .Subscribe((_) => { 
+                _model.LoginButtonPressed.Execute(); 
+            })
+            .AddTo(_disposables);
     }
 }
