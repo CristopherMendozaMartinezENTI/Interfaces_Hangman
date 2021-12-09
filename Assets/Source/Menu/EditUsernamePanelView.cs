@@ -23,7 +23,12 @@ public class EditUsernamePanelView : MonoBehaviour
             });
         
         _saveButton.onClick.AddListener(() => {
-            _viewModel.SaveButtonPressed.Execute();
+            _viewModel.SaveButtonPressed.Execute(_newUsernameInputField.text);
+        }
+        );
+
+        _newUsernameInputField.onSubmit.AddListener((_) => {
+            _viewModel.InputFieldSubmitted.Execute(_newUsernameInputField.text);
         }
         );
 

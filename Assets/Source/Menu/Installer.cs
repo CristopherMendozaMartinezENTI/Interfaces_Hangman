@@ -13,11 +13,21 @@ public class Installer : MonoBehaviour
     [SerializeField] private SettingsPanelView _settingsPanelPrefab;
     [SerializeField] private EditUsernamePanelView _editUsernamePanelPrefab;
 
-    [SerializeField] private FirebaseLoginService firebaseService;
+    [SerializeField] private FirebaseLoginService _firebaseService;
+    [SerializeField] private FirestoreService _firestoreService;
+
+    private MenuPanelController _menuPanelController;
+    private HomePanelController _homePanelController;
+    private EditUsernamePanelController _editUsernamePanelController;
 
     private void Awake()
     {
-        firebaseService.AnonimSignUp();
+        var loginUseCase = new FirebaseLogin(_firebaseService);
+        var authPersistanceUseCase = new FirebaseAuthPersistance(_firebaseService);
+        var databaseUseCase = new FirestoreDatabase(_firestoreService);
+
+        authPersistanceUseCase.SetAuthenticationPersistance();
+
         var homePanelView = Instantiate(_homePanelPrefab, _menuPanelsParent);
         var scorePanelView = Instantiate(_scorePanelPrefab, _menuPanelsParent);
         var settingPanelView = Instantiate(_settingsPanelPrefab, _menuPanelsParent);
@@ -40,10 +50,17 @@ public class Installer : MonoBehaviour
         settingPanelView.SetViewModel(settingsPanelViewModel);
         editUsernamePanelView.SetViewModel(editUsernamePanelViewModel);
 
-        new MenuPanelController(menuPanelViewModel, homePanelViewModel, scorePanelViewModel, settingsPanelViewModel);
-        new HomePanelController(homePanelViewModel, editUsernamePanelViewModel);
-        new EditUsernamePanelController(editUsernamePanelViewModel);
+        var homePanelPresenter = new HomePanelPresenter(homePanelViewModel);
+
+        _menuPanelController = new MenuPanelController(menuPanelViewModel, homePanelViewModel, scorePanelViewModel, settingsPanelViewModel);
+        _homePanelController = new HomePanelController(homePanelViewModel, editUsernamePanelViewModel, loginUseCase, databaseUseCase);
+        _editUsernamePanelController = new EditUsernamePanelController(editUsernamePanelViewModel, databaseUseCase);
 
         //TODO: Set Home as default starting menu
+    }
+
+    private void Start() 
+    {
+        _homePanelController.Initialize();
     }
 }
