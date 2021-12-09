@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
 
-public class SettingsPanelView : MonoBehaviour
+public class SettingsPanelView : View
 {
     [SerializeField] private RectTransform _panel;
     public RectTransform Panel { get => _panel; }
@@ -19,9 +19,9 @@ public class SettingsPanelView : MonoBehaviour
     [SerializeField] private RectTransform _audioGreenIndicator;
     [SerializeField] private RectTransform _audioRedIndicator;
 
-    public void SetViewModel(SettingsPanelViewModel viewModel)
+    public override void SetViewModel(ViewModel viewModel)
     {
-        _viewModel = viewModel;
+        _viewModel = viewModel as SettingsPanelViewModel;
 
         _viewModel
             .IsVisible
@@ -34,6 +34,7 @@ public class SettingsPanelView : MonoBehaviour
                     _swipeController.Animate(DoTweenPanelSwipeController.StartingSide.RIGHT);
                 }
                 //gameObject.transform.DOShakePosition(1.5f, 10.0f);
-            });
+            })
+            .AddTo(_disposables);
     }
 }

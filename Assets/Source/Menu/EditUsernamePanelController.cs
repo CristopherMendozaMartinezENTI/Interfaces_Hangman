@@ -1,7 +1,7 @@
 using UniRx;
 using UnityEngine;
 
-public class EditUsernamePanelController
+public class EditUsernamePanelController : Controller
 {
     private readonly EditUsernamePanelViewModel _editUsernamePanelViewModel;
 
@@ -16,19 +16,22 @@ public class EditUsernamePanelController
             .SaveButtonPressed
             .Subscribe((username) => {
                 OnUsernameEditDone(username);
-            });
+            })
+            .AddTo(_disposables);
 
         _editUsernamePanelViewModel
             .BackgroundButtonPressed
             .Subscribe((_) => {
                 OnUsernameEditAborted();
-            });
+            })
+            .AddTo(_disposables);
 
         _editUsernamePanelViewModel
             .InputFieldSubmitted
             .Subscribe((username) => {
                 OnUsernameEditDone(username);
-            });
+            })
+            .AddTo(_disposables);
     }
 
     private void OnUsernameEditDone(string username)

@@ -1,6 +1,6 @@
 using UniRx;
 
-public class ScorePanelViewModel 
+public class ScorePanelViewModel : ViewModel
 {
     public readonly ReactiveProperty<bool> IsVisible;
     public readonly ReactiveProperty<bool> IsFromTheLeft;

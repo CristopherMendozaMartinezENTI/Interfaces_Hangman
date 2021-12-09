@@ -1,6 +1,6 @@
 using UniRx;
 
-public class EditUsernamePanelViewModel
+public class EditUsernamePanelViewModel : ViewModel
 {
     public readonly ReactiveCommand<string> SaveButtonPressed;
     public readonly ReactiveCommand<string> InputFieldSubmitted;

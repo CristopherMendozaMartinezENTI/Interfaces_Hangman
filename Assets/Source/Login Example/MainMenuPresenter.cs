@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class MainMenuPresenter : IDisposable
+public class MainMenuPresenter : Presenter
 {
     private readonly MainMenuViewModel _model;
 
@@ -17,8 +17,8 @@ public class MainMenuPresenter : IDisposable
         _model.IsVisible.Value = false;
     }
 
-    public void Dispose()
+    public new void Dispose()
     {
-        EventDispatcherService.Instance.Unsubscribe<UserData>(OnUserDateUpdated); 
+        EventDispatcherService.Instance.Unsubscribe<UserData>(OnUserDateUpdated);
     }
 }

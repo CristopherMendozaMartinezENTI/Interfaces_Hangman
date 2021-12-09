@@ -1,6 +1,6 @@
 using UniRx;
 
-public class MenuPanelController 
+public class MenuPanelController : Controller
 {
     private readonly MenuPanelViewModel _menuPanelViewModel;
     private readonly HomePanelViewModel _homePanelViewModel;
@@ -29,7 +29,8 @@ public class MenuPanelController
             {
                 //Ya estamos en el menu Home
             }
-        });
+        })
+        .AddTo(_disposables);
 
         _menuPanelViewModel
          .ScoreButtonPressed
@@ -49,7 +50,8 @@ public class MenuPanelController
                  //Ya estamos en el menu Score
              }
              
-         });
+         })
+         .AddTo(_disposables);
 
         _menuPanelViewModel
         .SettingsButtonPressed
@@ -65,6 +67,7 @@ public class MenuPanelController
             {
                 //Ya estamos en el menu Settings
             }            
-        });
+        })
+        .AddTo(_disposables);
     }
 }

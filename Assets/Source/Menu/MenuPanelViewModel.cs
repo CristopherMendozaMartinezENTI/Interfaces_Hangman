@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MenuPanelViewModel
+public class MenuPanelViewModel : ViewModel
 {
     public readonly ReactiveCommand HomeButtonPressed;
     public readonly ReactiveCommand ScoreButtonPressed;

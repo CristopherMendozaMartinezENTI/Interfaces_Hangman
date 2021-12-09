@@ -1,6 +1,6 @@
 using UniRx;
 
-public class HomePanelViewModel
+public class HomePanelViewModel : ViewModel
 {
     public readonly ReactiveCommand EditUsernameButtonPressed;
     public readonly ReactiveCommand PlayButtonPressed;
