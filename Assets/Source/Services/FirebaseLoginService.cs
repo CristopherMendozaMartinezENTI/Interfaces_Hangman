@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class FirebaseLoginService : MonoBehaviour
 {
@@ -30,10 +31,21 @@ public class FirebaseLoginService : MonoBehaviour
         });
     }
 
-    public void AnonimSignUp()
+    public Firebase.Auth.FirebaseUser GetCurrentUser()
     {
+        return GetFirebaseAuthDefaultInstance().CurrentUser;
+    }
+
+    public Firebase.Auth.FirebaseAuth GetFirebaseAuthDefaultInstance()
+    {
+        return Firebase.Auth.FirebaseAuth.DefaultInstance;
+    }
+
+    public async Task AnonymousSignIn()
+    {
+        Debug.Log("Called AnonymousSignIn");
         Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        auth.SignInAnonymouslyAsync().ContinueWith(task => {
+        await auth.SignInAnonymouslyAsync().ContinueWith(task => {
             if (task.IsCanceled)
             {
                 Debug.LogError("SignInAnonymouslyAsync was canceled.");
@@ -47,7 +59,7 @@ public class FirebaseLoginService : MonoBehaviour
 
             newUser = task.Result;
             Debug.LogFormat("User signed in successfully: {0}", newUser.UserId);
-            PlayerPrefs.SetString("UserId", newUser.UserId);
+            PlayerPrefs.SetString(Constants.STRING_PLAYERPREFS_USERID, newUser.UserId);
         });
     }
 }

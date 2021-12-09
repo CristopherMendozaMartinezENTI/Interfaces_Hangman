@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+/*
 public class LoginInstaller : MonoBehaviour
 {
     [SerializeField] private MainMenuView _mainMenuView;
@@ -16,7 +17,7 @@ public class LoginInstaller : MonoBehaviour
         _mainMenuView.Configure(mainMenuViewModel);
         var profileViewModel = new ProfileViewModel();
         _profileView.Configure(profileViewModel);
-        var loginUseCase = new LoginUseCase(firebaseService);
+        var loginUseCase = new FirebaseLogin(firebaseService);
         var mainMenuPresenter = new MainMenuPresenter(mainMenuViewModel);
         _disposables.Add(mainMenuPresenter);
         var mainMenuController = new MainMenuController(mainMenuViewModel, loginUseCase);
@@ -32,4 +33,4 @@ public class LoginInstaller : MonoBehaviour
             disposable.Dispose();
         }
     }
-}
+}*/

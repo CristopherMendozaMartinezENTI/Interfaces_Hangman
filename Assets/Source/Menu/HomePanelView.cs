@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
+using TMPro;
 
 public class HomePanelView : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class HomePanelView : MonoBehaviour
     [SerializeField] private Button _editUsernameButton;
     [SerializeField] private Button _playButton;
 
+    [SerializeField] private TMP_Text usernameText;
     public void SetViewModel(HomePanelViewModel viewModel)
     {
         _viewModel = viewModel;
@@ -29,6 +31,12 @@ public class HomePanelView : MonoBehaviour
                 }
                 
                 //gameObject.transform.DOShakePosition(1.5f, 10.0f);
+            });
+        
+        _viewModel
+            .Username
+            .Subscribe((username) => {
+                usernameText.text = username;
             });
         
         _editUsernameButton.onClick.AddListener(() => {

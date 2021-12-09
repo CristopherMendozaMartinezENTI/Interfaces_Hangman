@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class MainMenuController : Controller
 {
     private readonly MainMenuViewModel _model;
-    private readonly LoginRequest _loginRequester;
+    private readonly ILoginRequest _loginRequester;
 
-    public MainMenuController(MainMenuViewModel model, LoginRequest loginRequester)
+    public MainMenuController(MainMenuViewModel model, ILoginRequest loginRequester)
     {
         _model = model;
         _loginRequester = loginRequester;
@@ -18,6 +18,6 @@ public class MainMenuController : Controller
 
     private void OnLoginButtonPressed(Unit _)
     {
-        _loginRequester.Login();
+        _loginRequester.AnonymousSignIn();
     }
 }

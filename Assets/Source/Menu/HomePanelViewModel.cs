@@ -6,6 +6,7 @@ public class HomePanelViewModel
     public readonly ReactiveCommand PlayButtonPressed;
 
     public readonly ReactiveProperty<bool> IsVisible;
+    public readonly ReactiveProperty<string> Username;
 
     public HomePanelViewModel()
     {
@@ -13,5 +14,6 @@ public class HomePanelViewModel
         PlayButtonPressed = new ReactiveCommand();
 
         IsVisible = new ReactiveProperty<bool>();
+        Username = new ReactiveProperty<string>();
     }
 }

@@ -614,6 +614,7 @@ MonoBehaviour:
   _swipeController: {fileID: 8914760176460627109}
   _editUsernameButton: {fileID: 1122434429476302304}
   _playButton: {fileID: 3997538447178936886}
+  usernameText: {fileID: 8732313904648624456}
 --- !u!114 &8914760176460627109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,7 +1152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 240, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3853070819203209043
