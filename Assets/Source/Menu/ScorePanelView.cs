@@ -11,6 +11,7 @@ public class ScorePanelView : View
     private DoTweenPanelSwipeController.StartingSide _startingSide;
 
     [SerializeField] private RectTransform scrollListParent;
+    [SerializeField] private ScoreCardPanelView _scoreCardPanelView;
 
     private ScorePanelViewModel _viewModel;
 
@@ -28,15 +29,17 @@ public class ScorePanelView : View
         _viewModel
             .IsVisible
             .Subscribe((isVisible) => {
-                //gameObject.SetActive(isVisible);
-
                 if (isVisible)
                 {
                     _panel.SetAsLastSibling();
                     _swipeController.Animate(_startingSide);
                 }
-                //gameObject.transform.DOShakePosition(1.5f, 10.0f);
             })
             .AddTo(_disposables);
+
+        for(int i = 0; i < 10; i++)
+        {
+            var scoreRankInit = Instantiate(_scoreCardPanelView, scrollListParent);
+        }
     }
 }

@@ -16,11 +16,11 @@ public class Installer : MonoBehaviour
 
     [SerializeField] private FirebaseLoginService _firebaseService;
     [SerializeField] private FirestoreService _firestoreService;
+    [SerializeField] private FirebaseRankingDatabase _firebaseDatabase;
 
     private MenuPanelController _menuPanelController;
     private HomePanelController _homePanelController;
     private EditUsernamePanelController _editUsernamePanelController;
-
 
     private List<IDisposable> _disposables = new List<IDisposable>();
 

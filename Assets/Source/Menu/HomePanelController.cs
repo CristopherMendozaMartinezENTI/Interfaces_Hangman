@@ -3,7 +3,7 @@ using UnityEngine;
 using Firebase.Extensions;
 using System;
 
-public class HomePanelController : IDisposable
+public class HomePanelController : Controller
 {
     private readonly HomePanelViewModel _homePanelViewModel;
     private readonly EditUsernamePanelViewModel _editUsernamePanelViewModel;
@@ -42,10 +42,5 @@ public class HomePanelController : IDisposable
         });
 
         EventDispatcherService.Instance.Dispatch<UserData>(userdata);
-    }
-
-    public void Dispose() 
-    {
-        
     }
 }

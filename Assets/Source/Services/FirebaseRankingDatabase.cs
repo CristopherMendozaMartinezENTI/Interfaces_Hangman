@@ -9,6 +9,8 @@ using TMPro;
 
 public class FirebaseRankingDatabase : MonoBehaviour
 {
+    public Dictionary<string, ScoreEntry> sortedRanking;
+    
     public void Start()
     {
         Debug.Log("Getting Data from Ranking");
@@ -31,13 +33,7 @@ public class FirebaseRankingDatabase : MonoBehaviour
                        }
                    }
 
-                   var sortedRanking = from entry in unsortedRanking orderby entry.Value.Score descending select entry;
-
-                   foreach (KeyValuePair<string, ScoreEntry> entry in sortedRanking)
-                   {
-                       Debug.Log(entry.Key);
-                       Debug.Log(entry.Value.Score);
-                   }
+                   sortedRanking = (Dictionary<string, ScoreEntry>)from entry in unsortedRanking orderby entry.Value.Score descending select entry;
                });
     }
 
