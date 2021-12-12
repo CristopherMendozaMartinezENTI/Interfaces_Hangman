@@ -7,12 +7,13 @@ using System;
 using Firebase.Firestore;
 using Firebase.Extensions;
 
-public class FirestoreService : MonoBehaviour
+public class FirestoreService : IDatabaseService
 {
     private Firebase.FirebaseApp app;
     private FirebaseFirestore db;
 
-    private void Awake() {
+    public void InitializeDatabase() 
+    {
         db = FirebaseFirestore.DefaultInstance;
     }
 
@@ -42,6 +43,24 @@ public class FirestoreService : MonoBehaviour
             DocumentSnapshot snapshot = task.Result;
             if (snapshot.Exists) {
                 data = snapshot.ToDictionary();
+            }
+        });
+        return data;
+    }
+
+    public async Task<Dictionary<string, Dictionary<string, object>>> GetCollection(string collection) 
+    {
+        Debug.Log("Trying to get data from the " + collection + " collection.\n");
+        CollectionReference colRef = db.Collection(collection);
+        Dictionary<string, Dictionary<string, object>> data = new Dictionary<string, Dictionary<string, object>>();
+        await colRef.GetSnapshotAsync().ContinueWithOnMainThread(task => 
+        {
+            QuerySnapshot allDocumentsSnapshot = task.Result;
+            foreach (DocumentSnapshot document in allDocumentsSnapshot)
+            {
+                Dictionary<string, object> documentData = document.ToDictionary();
+                
+                data.Add(document.Id, documentData);
             }
         });
         return data;

@@ -31,9 +31,9 @@ public class ScoreCardPanelView : View
           .AddTo(_disposables);
 
         _viewModel
-          .PlayTime
-          .Subscribe((playtime) => {
-              playTimeText.text = playtime;
+          .OrderNumber
+          .Subscribe((orderNumber) => {
+              playTimeText.text = orderNumber;
           })
           .AddTo(_disposables);
     }

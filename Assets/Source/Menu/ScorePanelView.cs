@@ -14,6 +14,9 @@ public class ScorePanelView : View
     private DoTweenPanelSwipeController.StartingSide _startingSide;
 
     [SerializeField] private RectTransform scrollListParent;
+    [SerializeField] private ScoreCardPanelView _scoreCardPrefab;
+
+    private List<ScoreCardPanelView> scoreCardInstances;
     public RectTransform ScrollList { get => scrollListParent; }
 
     private ScorePanelViewModel _viewModel;
@@ -41,5 +44,18 @@ public class ScorePanelView : View
                 }
             })
             .AddTo(_disposables);
+
+        _viewModel
+            .ScoreCards
+            .ObserveAdd()
+            .Subscribe(InstantiateScoreCard)
+            .AddTo(_disposables);
+    }
+
+    private void InstantiateScoreCard(CollectionAddEvent<ScoreCardPanelViewModel> scoreCardPanelEntity)
+    {
+        var scoreCard = Instantiate(_scoreCardPrefab, scrollListParent);
+        scoreCard.SetViewModel(scoreCardPanelEntity.Value);
+        scoreCardInstances.Add(scoreCard);
     }
 }

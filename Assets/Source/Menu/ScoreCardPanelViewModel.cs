@@ -7,12 +7,12 @@ public class ScoreCardPanelViewModel : ViewModel
 {
     public readonly ReactiveProperty<string> UserName;
     public readonly ReactiveProperty<string> Score;
-    public readonly ReactiveProperty<string> PlayTime;
+    public readonly ReactiveProperty<string> OrderNumber;
 
-    public ScoreCardPanelViewModel()
+    public ScoreCardPanelViewModel(string orderNumber, string username, string score)
     {
-        UserName = new ReactiveProperty<string>();
-        Score = new ReactiveProperty<string>();
-        PlayTime = new ReactiveProperty<string>();
+        UserName = new ReactiveProperty<string>(username);
+        Score = new ReactiveProperty<string>(score);
+        OrderNumber = new ReactiveProperty<string>(orderNumber);
     }
 }
