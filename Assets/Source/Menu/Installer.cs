@@ -33,7 +33,9 @@ public class Installer : MonoBehaviour
         var authPersistanceUseCase = new FirebaseAuthPersistance(_firebaseService);
         _disposables.Add(authPersistanceUseCase);
         var databaseUseCase = new FirestoreDatabase(_firestoreService);
-        
+
+        var rankingData = _firebaseDatabase.GetData();
+            
         authPersistanceUseCase.SetAuthenticationPersistance();
 
         var homePanelView = Instantiate(_homePanelPrefab, _menuPanelsParent);
@@ -66,21 +68,16 @@ public class Installer : MonoBehaviour
         var homePanelPresenter = new HomePanelPresenter(homePanelViewModel);
         _disposables.Add(homePanelPresenter);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) //Cambiar esto por un foreach recomiendo la data 
         {
             //Ranking 
             var scoreCardPanelViewInit = Instantiate(_scoreCardPanelView, scorePanelView.ScrollList);
-
             var scoreCardPanelViewModel = new ScoreCardPanelViewModel();
             _disposables.Add(scoreCardPanelViewModel);
-
             scoreCardPanelViewInit.SetViewModel(scoreCardPanelViewModel);
-
             KeyValuePair<string, ScoreEntry> playerScore = new KeyValuePair<string, ScoreEntry>("Kroozu", new ScoreEntry(i+2, i+1));
-
             var scoreCardPanelPresenter = new ScoreCardPanelPresenter(scoreCardPanelViewModel, playerScore);
             _disposables.Add(scoreCardPanelPresenter);
-
             EventDispatcherService.Instance.Dispatch(playerScore);
         }
 

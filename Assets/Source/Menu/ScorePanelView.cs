@@ -42,5 +42,4 @@ public class ScorePanelView : View
             })
             .AddTo(_disposables);
     }
-    
 }
