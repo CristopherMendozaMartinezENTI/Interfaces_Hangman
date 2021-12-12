@@ -11,6 +11,7 @@ public class FirestoreDatabase : IDatabase
     const string USERS_COLLECTION_NAME = "users";
     const string USERS_USERNAME_FIELD_NAME = "username";
     FirestoreService _firestoreService;
+
     public FirestoreDatabase(FirestoreService firestoreService) 
     {
         _firestoreService = firestoreService;

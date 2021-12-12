@@ -343,6 +343,7 @@ MonoBehaviour:
   _scorePanelPrefab: {fileID: 2871673370947443568, guid: a292e3577ff9e5a47b343da5f759dd7d, type: 3}
   _settingsPanelPrefab: {fileID: 7973797107909844941, guid: 6e287e9e2c6fcd94cb87394bf78ed566, type: 3}
   _editUsernamePanelPrefab: {fileID: 1708455331292313248, guid: 5aaa616f653705c4cb4c7ee7053c9099, type: 3}
+  _scoreCardPanelView: {fileID: 9067394827418428599, guid: 093fc835658b47040afdce847654d6ff, type: 3}
   _firebaseService: {fileID: 525480145}
   _firestoreService: {fileID: 525480147}
   _firebaseDatabase: {fileID: 525480148}

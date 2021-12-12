@@ -9,35 +9,9 @@ using TMPro;
 
 public class FirebaseRankingDatabase : MonoBehaviour
 {
-    public Dictionary<string, ScoreEntry> sortedRanking;
-    
-    public void Start()
-    {
-        Debug.Log("Getting Data from Ranking");
-        var unsortedRanking = new Dictionary<string, ScoreEntry>();
-        FirebaseDatabase.DefaultInstance
-               .GetReference("ranking")
-               .GetValueAsync()
-               .ContinueWithOnMainThread(task =>
-               {
-                   if (task.IsCompleted)
-                   {
-                       Debug.Log("Read Ok");
-                       foreach (var dataSnapshot in task.Result.Children)
-                       {   
-                           var userName = dataSnapshot.Key.ToString();
-                           var score = int.Parse(dataSnapshot.Child("Score").Value.ToString());
-                           var playTime = int.Parse(dataSnapshot.Child("PlayTime").Value.ToString());
-                           ScoreEntry userScore = new ScoreEntry(score, playTime);
-                           unsortedRanking.Add(userName, userScore);
-                       }
-                   }
+    public Dictionary<string, ScoreEntry> Ranking;
 
-                   sortedRanking = (Dictionary<string, ScoreEntry>)from entry in unsortedRanking orderby entry.Value.Score descending select entry;
-               });
-    }
-
-    public async Task<Dictionary<string, ScoreEntry>> GetData()
+    public async Task GetData()
     {
         Debug.Log("Getting Data from Ranking");
         var unsortedRanking = new Dictionary<string, ScoreEntry>();
@@ -57,11 +31,21 @@ public class FirebaseRankingDatabase : MonoBehaviour
                            ScoreEntry userScore = new ScoreEntry(score, playTime);
                            unsortedRanking.Add(userName, userScore);
                        }
+
+                       var sortedRanking = from entry in unsortedRanking orderby entry.Value.Score descending select entry;
+
+                       foreach (KeyValuePair<string, ScoreEntry> entry in sortedRanking)
+                       {
+                           Debug.Log(entry.Key);
+                           Debug.Log(entry.Value.Score);
+                       }
+
+                       foreach (var entry in sortedRanking)
+                       {
+                           Ranking[entry.Key] = new ScoreEntry(entry.Value.Score, entry.Value.PlayTime);
+                       }
                    }
                });
-
-        var sortedRanking = (Dictionary<string, ScoreEntry>)from entry in unsortedRanking orderby entry.Value.Score descending select entry;
-        return sortedRanking;
     }
 
     public async Task AddData(string user, ScoreEntry _scoreEntry)

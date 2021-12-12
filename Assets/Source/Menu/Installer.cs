@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using System;
 
@@ -13,6 +14,8 @@ public class Installer : MonoBehaviour
     [SerializeField] private ScorePanelView _scorePanelPrefab;
     [SerializeField] private SettingsPanelView _settingsPanelPrefab;
     [SerializeField] private EditUsernamePanelView _editUsernamePanelPrefab;
+
+    [SerializeField] private ScoreCardPanelView _scoreCardPanelView;
 
     [SerializeField] private FirebaseLoginService _firebaseService;
     [SerializeField] private FirestoreService _firestoreService;
@@ -30,7 +33,7 @@ public class Installer : MonoBehaviour
         var authPersistanceUseCase = new FirebaseAuthPersistance(_firebaseService);
         _disposables.Add(authPersistanceUseCase);
         var databaseUseCase = new FirestoreDatabase(_firestoreService);
-
+        
         authPersistanceUseCase.SetAuthenticationPersistance();
 
         var homePanelView = Instantiate(_homePanelPrefab, _menuPanelsParent);
@@ -62,6 +65,24 @@ public class Installer : MonoBehaviour
 
         var homePanelPresenter = new HomePanelPresenter(homePanelViewModel);
         _disposables.Add(homePanelPresenter);
+
+        for (int i = 0; i < 10; i++)
+        {
+            //Ranking 
+            var scoreCardPanelViewInit = Instantiate(_scoreCardPanelView, scorePanelView.ScrollList);
+
+            var scoreCardPanelViewModel = new ScoreCardPanelViewModel();
+            _disposables.Add(scoreCardPanelViewModel);
+
+            scoreCardPanelViewInit.SetViewModel(scoreCardPanelViewModel);
+
+            KeyValuePair<string, ScoreEntry> playerScore = new KeyValuePair<string, ScoreEntry>("Kroozu", new ScoreEntry(i+2, i+1));
+
+            var scoreCardPanelPresenter = new ScoreCardPanelPresenter(scoreCardPanelViewModel, playerScore);
+            _disposables.Add(scoreCardPanelPresenter);
+
+            EventDispatcherService.Instance.Dispatch(playerScore);
+        }
 
         _menuPanelController = new MenuPanelController(menuPanelViewModel, homePanelViewModel, scorePanelViewModel, settingsPanelViewModel);
         _disposables.Add(_menuPanelController);

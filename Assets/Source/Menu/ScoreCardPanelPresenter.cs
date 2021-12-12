@@ -6,10 +6,10 @@ public class ScoreCardPanelPresenter : Presenter
 {
     private readonly ScoreCardPanelViewModel _model;
 
-    public ScoreCardPanelPresenter(ScoreCardPanelViewModel model, int rank, KeyValuePair<string, ScoreEntry> playerScore)
+    public ScoreCardPanelPresenter(ScoreCardPanelViewModel model, KeyValuePair<string, ScoreEntry> pair)
     {
         _model = model;
-        EventDispatcherService.Instance.Subscribe<KeyValuePair<string, ScoreEntry>>(OnUserScoreUpdated);
+       EventDispatcherService.Instance.Subscribe<KeyValuePair<string, ScoreEntry>>(OnUserScoreUpdated);
     }
 
     private void OnUserScoreUpdated(KeyValuePair<string, ScoreEntry> pair)
@@ -21,6 +21,6 @@ public class ScoreCardPanelPresenter : Presenter
 
     public new void Dispose()
     {
-        EventDispatcherService.Instance.Unsubscribe<KeyValuePair<string, ScoreEntry>>(OnUserScoreUpdated);
+       EventDispatcherService.Instance.Unsubscribe<KeyValuePair<string, ScoreEntry>>(OnUserScoreUpdated);
     }
 }

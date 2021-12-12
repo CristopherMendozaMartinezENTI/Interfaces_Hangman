@@ -24,14 +24,14 @@ public class ScoreCardPanelView : View
           .AddTo(_disposables);
 
         _viewModel
-          .UserName
+          .Score
           .Subscribe((score) => {
               scoreText.text = score;
           })
           .AddTo(_disposables);
 
         _viewModel
-          .UserName
+          .PlayTime
           .Subscribe((playtime) => {
               playTimeText.text = playtime;
           })

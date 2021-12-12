@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
@@ -7,11 +9,12 @@ public class ScorePanelView : View
 {
     [SerializeField] private RectTransform _panel;
     public RectTransform Panel { get => _panel; }
+
     [SerializeField] private DoTweenPanelSwipeController _swipeController;
     private DoTweenPanelSwipeController.StartingSide _startingSide;
 
     [SerializeField] private RectTransform scrollListParent;
-    [SerializeField] private ScoreCardPanelView _scoreCardPanelView;
+    public RectTransform ScrollList { get => scrollListParent; }
 
     private ScorePanelViewModel _viewModel;
 
@@ -21,14 +24,16 @@ public class ScorePanelView : View
 
         _viewModel
             .IsFromTheLeft
-            .Subscribe((isFromTheLeft) => {
+            .Subscribe((isFromTheLeft) =>
+            {
                 _startingSide = isFromTheLeft ? DoTweenPanelSwipeController.StartingSide.LEFT : DoTweenPanelSwipeController.StartingSide.RIGHT;
             })
             .AddTo(_disposables);
 
         _viewModel
             .IsVisible
-            .Subscribe((isVisible) => {
+            .Subscribe((isVisible) =>
+            {
                 if (isVisible)
                 {
                     _panel.SetAsLastSibling();
@@ -36,10 +41,6 @@ public class ScorePanelView : View
                 }
             })
             .AddTo(_disposables);
-
-        for(int i = 0; i < 10; i++)
-        {
-            var scoreRankInit = Instantiate(_scoreCardPanelView, scrollListParent);
-        }
     }
+    
 }
