@@ -1,11 +1,8 @@
 using System.Threading.Tasks;
 
-namespace Code.Model.Services.Authentication
+public interface AuthenticationService
 {
-    public interface AuthenticationService
-    {
-        public string UserId { get; }
+    public string UserId { get; }
 
-        Task<string> AnonymousLogin();
-    }
+    Task<string> AnonymousLogin();
 }

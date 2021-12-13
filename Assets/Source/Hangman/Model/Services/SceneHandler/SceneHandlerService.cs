@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Code.Model.Services.SceneHandler
+public interface SceneHandlerService
 {
-    public interface SceneHandlerService
-    {
-        Task LoadScene(string scene);
-    }
+    Task LoadScene(string scene);
 }

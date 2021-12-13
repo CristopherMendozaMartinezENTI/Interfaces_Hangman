@@ -1,19 +1,16 @@
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace Code.Model.Services.SceneHandler
+public class UnitySceneHandler : SceneHandlerService
 {
-    public class UnitySceneHandler : SceneHandlerService
+    public async Task LoadScene(string scene)
     {
-        public async Task LoadScene(string scene)
+        var asyncOperation = SceneManager.LoadSceneAsync(scene);
+        while (!asyncOperation.isDone)
         {
-            var asyncOperation = SceneManager.LoadSceneAsync(scene);
-            while (!asyncOperation.isDone)
-            {
-                await Task.Yield();
-            }
-
             await Task.Yield();
         }
+
+        await Task.Yield();
     }
 }
