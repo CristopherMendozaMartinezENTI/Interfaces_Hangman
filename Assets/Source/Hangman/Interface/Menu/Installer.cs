@@ -32,7 +32,7 @@ public class Installer : MonoBehaviour
         var authPersistanceUseCase = new FirebaseAuthPersistance(_firebaseService);
         _disposables.Add(authPersistanceUseCase);
 
-        _firestoreService.InitializeDatabase();
+       // _firestoreService.InitializeDatabase();
         var databaseUseCase = new FirestoreDatabase(_firestoreService);
             
         authPersistanceUseCase.SetAuthenticationPersistance();
