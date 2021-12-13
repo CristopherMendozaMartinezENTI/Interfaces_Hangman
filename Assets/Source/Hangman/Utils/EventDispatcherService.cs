@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class EventDispatcherService
+public class EventDispatcherService : IEventDispatcherService
 {
     public static EventDispatcherService Instance => _instance ??= new EventDispatcherService();
     private static EventDispatcherService _instance;
