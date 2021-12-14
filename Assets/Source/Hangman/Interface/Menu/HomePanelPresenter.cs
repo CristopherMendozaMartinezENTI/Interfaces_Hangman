@@ -11,7 +11,7 @@ public class HomePanelPresenter : Presenter
     {
         _homePanelViewModel = homePanelViewModel;
 
-        EventDispatcherService.Instance.Subscribe<UserData>(OnUserDataUpdated);
+        ServiceLocator.Instance.GetService<IEventDispatcherService>().Subscribe<UserData>(OnUserDataUpdated);
     }
 
     private void OnUserDataUpdated(UserData userdata)
@@ -21,6 +21,6 @@ public class HomePanelPresenter : Presenter
 
     public new void Dispose()
     {
-        EventDispatcherService.Instance.Unsubscribe<UserData>(OnUserDataUpdated);
+        ServiceLocator.Instance.GetService<IEventDispatcherService>().Unsubscribe<UserData>(OnUserDataUpdated);
     }
 }

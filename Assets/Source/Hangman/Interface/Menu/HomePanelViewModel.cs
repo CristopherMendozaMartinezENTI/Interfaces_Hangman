@@ -10,10 +10,10 @@ public class HomePanelViewModel : ViewModel
 
     public HomePanelViewModel()
     {
-        EditUsernameButtonPressed = new ReactiveCommand();
-        PlayButtonPressed = new ReactiveCommand();
+        EditUsernameButtonPressed = new ReactiveCommand().AddTo(_disposables);
+        PlayButtonPressed = new ReactiveCommand().AddTo(_disposables);
 
-        IsVisible = new ReactiveProperty<bool>();
-        Username = new ReactiveProperty<string>();
+        IsVisible = new ReactiveProperty<bool>().AddTo(_disposables);
+        Username = new ReactiveProperty<string>().AddTo(_disposables);
     }
 }

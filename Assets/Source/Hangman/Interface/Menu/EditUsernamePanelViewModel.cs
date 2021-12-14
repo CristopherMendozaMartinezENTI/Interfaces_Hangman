@@ -10,10 +10,10 @@ public class EditUsernamePanelViewModel : ViewModel
 
     public EditUsernamePanelViewModel()
     {
-        SaveButtonPressed = new ReactiveCommand<string>();
-        InputFieldSubmitted = new ReactiveCommand<string>();
-        BackgroundButtonPressed = new ReactiveCommand();
+        SaveButtonPressed = new ReactiveCommand<string>().AddTo(_disposables);
+        InputFieldSubmitted = new ReactiveCommand<string>().AddTo(_disposables);
+        BackgroundButtonPressed = new ReactiveCommand().AddTo(_disposables);
 
-        IsVisible = new ReactiveProperty<bool>();
+        IsVisible = new ReactiveProperty<bool>(false).AddTo(_disposables);
     }
 }

@@ -9,16 +9,17 @@ public class ScorePanelPresenter : Presenter
     public ScorePanelPresenter(ScorePanelViewModel scorePanelViewModel)
     {
         _scorePanelViewModel = scorePanelViewModel;
-        EventDispatcherService.Instance.Subscribe<NewSortedScoreEntry>(OnScoreEntryAdded);
+        ServiceLocator.Instance.GetService<IEventDispatcherService>().Subscribe<NewSortedScoreEntry>(OnScoreEntryAdded);
     }
 
     private void OnScoreEntryAdded(NewSortedScoreEntry newSortedScoreEntry)
     {
-        _scorePanelViewModel.ScoreCards.Add(new ScoreCardPanelViewModel(newSortedScoreEntry.orderNumber.ToString(), newSortedScoreEntry.username, newSortedScoreEntry.score.ToString()));
+        Debug.Log("Score Panel VM - New Score Entry");
+        _scorePanelViewModel.ScoreCards.Add(new ScoreCardPanelViewModel(newSortedScoreEntry.orderNumber.ToString(), newSortedScoreEntry.username, newSortedScoreEntry.score.ToString(), newSortedScoreEntry.playtime.ToString()));
     }
 
     public new void Dispose() 
     {
-        EventDispatcherService.Instance.Unsubscribe<NewSortedScoreEntry>(OnScoreEntryAdded);
+        ServiceLocator.Instance.GetService<IEventDispatcherService>().Unsubscribe<NewSortedScoreEntry>(OnScoreEntryAdded);
     }
 }

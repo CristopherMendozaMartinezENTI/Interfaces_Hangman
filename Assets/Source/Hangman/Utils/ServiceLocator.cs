@@ -2,53 +2,50 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 
-namespace Code.Utils
+public class ServiceLocator
 {
-    public class ServiceLocator
+    public static ServiceLocator Instance => _instance ??= new ServiceLocator();
+    private static ServiceLocator _instance;
+
+    private readonly Dictionary<Type, object> _services;
+
+    private ServiceLocator()
     {
-        public static ServiceLocator Instance => _instance ??= new ServiceLocator();
-        private static ServiceLocator _instance;
+        _services = new Dictionary<Type, object>();
+    }
 
-        private readonly Dictionary<Type, object> _services;
+    public void RegisterService<T>(T service)
+    {
+        var type = typeof(T);
+        Assert.IsFalse(_services.ContainsKey(type),
+            $"Service {type} already registered");
 
-        private ServiceLocator()
+        _services.Add(type, service);
+    }
+    
+    public void RemoveService<T>()
+    {
+        var type = typeof(T);
+        Assert.IsTrue(_services.ContainsKey(type),
+            $"Service {type} is not registered");
+
+        _services.Remove(type);
+    }
+
+    public T GetService<T>()
+    {
+        var type = typeof(T);
+        if (!_services.TryGetValue(type, out var service))
         {
-            _services = new Dictionary<Type, object>();
+            throw new Exception($"Service {type} not found");
         }
 
-        public void RegisterService<T>(T service)
-        {
-            var type = typeof(T);
-            Assert.IsFalse(_services.ContainsKey(type),
-                $"Service {type} already registered");
+        return (T) service;
+    }
 
-            _services.Add(type, service);
-        }
-        
-        public void RemoveService<T>()
-        {
-            var type = typeof(T);
-            Assert.IsTrue(_services.ContainsKey(type),
-                $"Service {type} is not registered");
-
-            _services.Remove(type);
-        }
-
-        public T GetService<T>()
-        {
-            var type = typeof(T);
-            if (!_services.TryGetValue(type, out var service))
-            {
-                throw new Exception($"Service {type} not found");
-            }
-
-            return (T) service;
-        }
-
-        public bool Contains<T>()
-        {
-            var type = typeof(T);
-            return _services.ContainsKey(type);
-        }
+    public bool Contains<T>()
+    {
+        var type = typeof(T);
+        return _services.ContainsKey(type);
     }
 }

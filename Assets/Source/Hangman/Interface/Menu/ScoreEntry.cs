@@ -5,11 +5,12 @@ using UnityEngine;
 public class ScoreEntry
 {
     [SerializeField]
-    public string username;
     public int score;
-    public ScoreEntry(string _username, int _score)
+    public int playtime;
+
+    public ScoreEntry(int _score, int _playtime)
     {
         score = _score;
-        username = _username;
+        playtime = _playtime;
     }
 }

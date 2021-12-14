@@ -24,6 +24,7 @@ public class ScorePanelView : View
     public override void SetViewModel(ViewModel viewModel)
     {
         _viewModel = viewModel as ScorePanelViewModel;
+        scoreCardInstances = new List<ScoreCardPanelView>();
 
         _viewModel
             .IsFromTheLeft
@@ -54,8 +55,10 @@ public class ScorePanelView : View
 
     private void InstantiateScoreCard(CollectionAddEvent<ScoreCardPanelViewModel> scoreCardPanelEntity)
     {
+        Debug.Log("Score Panel V - Instantiating New Score Card");
         var scoreCard = Instantiate(_scoreCardPrefab, scrollListParent);
         scoreCard.SetViewModel(scoreCardPanelEntity.Value);
         scoreCardInstances.Add(scoreCard);
+        Debug.Log("Score Panel V - New Score Card Instantiated");
     }
 }

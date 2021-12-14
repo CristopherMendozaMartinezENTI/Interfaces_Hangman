@@ -13,8 +13,8 @@ public class MenuPanelViewModel : ViewModel
 
     public MenuPanelViewModel()
     {
-        HomeButtonPressed = new ReactiveCommand();
-        ScoreButtonPressed = new ReactiveCommand();
-        SettingsButtonPressed = new ReactiveCommand();
+        HomeButtonPressed = new ReactiveCommand().AddTo(_disposables);
+        ScoreButtonPressed = new ReactiveCommand().AddTo(_disposables);
+        SettingsButtonPressed = new ReactiveCommand().AddTo(_disposables);
     }
 }

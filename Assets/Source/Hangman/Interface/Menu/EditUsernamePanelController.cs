@@ -5,12 +5,12 @@ public class EditUsernamePanelController : Controller
 {
     private readonly EditUsernamePanelViewModel _editUsernamePanelViewModel;
 
-    private readonly IDatabase _databaseUseCase;
+    private readonly UserDataSetter _setUserDataUseCase;
 
-    public EditUsernamePanelController(EditUsernamePanelViewModel viewModel, IDatabase databaseUseCase)
+    public EditUsernamePanelController(EditUsernamePanelViewModel viewModel, UserDataSetter setUserDataUseCase)
     {
         _editUsernamePanelViewModel = viewModel;
-        _databaseUseCase = databaseUseCase;
+        _setUserDataUseCase = setUserDataUseCase;
 
         _editUsernamePanelViewModel
             .SaveButtonPressed
@@ -39,8 +39,8 @@ public class EditUsernamePanelController : Controller
         UserData userdata = new UserData(PlayerPrefs.GetString(Constants.STRING_PLAYERPREFS_USERID), username);
         _editUsernamePanelViewModel.IsVisible.Value = false;
 
-        _databaseUseCase.SetUserdata(userdata);
-        EventDispatcherService.Instance.Dispatch<UserData>(userdata);
+        _setUserDataUseCase.SetUserdata(userdata);
+        ServiceLocator.Instance.GetService<IEventDispatcherService>().Dispatch<UserData>(userdata);
     }
 
     private void OnUsernameEditAborted() 

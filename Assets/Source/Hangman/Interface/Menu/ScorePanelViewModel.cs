@@ -9,9 +9,9 @@ public class ScorePanelViewModel : ViewModel
 
     public ScorePanelViewModel()
     {
-        IsVisible = new ReactiveProperty<bool>();
-        IsFromTheLeft = new ReactiveProperty<bool>();
+        IsVisible = new ReactiveProperty<bool>().AddTo(_disposables);
+        IsFromTheLeft = new ReactiveProperty<bool>().AddTo(_disposables);
 
-        ScoreCards = new ReactiveCollection<ScoreCardPanelViewModel>();
+        ScoreCards = new ReactiveCollection<ScoreCardPanelViewModel>().AddTo(_disposables);
     }
 }

@@ -2,10 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public class EventDispatcherService : IEventDispatcherService
-{
-    public static EventDispatcherService Instance => _instance ??= new EventDispatcherService();
-    private static EventDispatcherService _instance;
-        
+{        
     private readonly Dictionary<Type, dynamic> _events;
 
     public EventDispatcherService()

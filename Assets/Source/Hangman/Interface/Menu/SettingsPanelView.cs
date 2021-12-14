@@ -36,5 +36,34 @@ public class SettingsPanelView : View
                 //gameObject.transform.DOShakePosition(1.5f, 10.0f);
             })
             .AddTo(_disposables);
+        _viewModel
+            .NotificationsActive
+            .Subscribe((notificationsActive) =>
+            {
+                _notificationsGreenIndicator.gameObject.SetActive(notificationsActive);
+                _notificationsRedIndicator.gameObject.SetActive(!notificationsActive);
+            }).AddTo(_disposables);
+
+
+        _loginButton
+            .OnClickAsObservable()
+            .Subscribe((_) =>
+            {
+                _viewModel.LoginButtonPressed.Execute();
+            }).AddTo(_disposables);
+
+        _registerButton
+            .OnClickAsObservable()
+            .Subscribe((_) =>
+            {
+                _viewModel.RegisterButtonPressed.Execute();
+            }).AddTo(_disposables);
+
+        _notificationsButton
+            .OnClickAsObservable()
+            .Subscribe((_) =>
+            {
+                _viewModel.NotificationsButtonPressed.Execute();
+            }).AddTo(_disposables);
     }
 }

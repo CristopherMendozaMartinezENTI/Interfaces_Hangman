@@ -224,75 +224,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &525480144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 525480146}
-  - component: {fileID: 525480145}
-  - component: {fileID: 525480147}
-  - component: {fileID: 525480148}
-  m_Layer: 0
-  m_Name: FirebaseServices
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &525480145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525480144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fd23eec30a6f348bb31af046c8bc17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &525480146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525480144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &525480147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525480144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6461c9c684d2e1488073403021ea134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &525480148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525480144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3247254a857fe8c459eac05144d75a3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &923124492
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,10 +274,9 @@ MonoBehaviour:
   _scorePanelPrefab: {fileID: 2871673370947443568, guid: a292e3577ff9e5a47b343da5f759dd7d, type: 3}
   _settingsPanelPrefab: {fileID: 7973797107909844941, guid: 6e287e9e2c6fcd94cb87394bf78ed566, type: 3}
   _editUsernamePanelPrefab: {fileID: 1708455331292313248, guid: 5aaa616f653705c4cb4c7ee7053c9099, type: 3}
+  _loginMenuPrefab: {fileID: 3426933106831061447, guid: dbd9cfb5a6b381546af043ed508e9de6, type: 3}
+  _registerMenuPrefab: {fileID: 1779313732410096727, guid: 50dc07b877fdb754a9846cd774f80a10, type: 3}
   _scoreCardPanelView: {fileID: 9067394827418428599, guid: 093fc835658b47040afdce847654d6ff, type: 3}
-  _firebaseService: {fileID: 525480145}
-  _firestoreService: {fileID: 525480147}
-  _firebaseDatabase: {fileID: 525480148}
 --- !u!1 &1389163896
 GameObject:
   m_ObjectHideFlags: 0
