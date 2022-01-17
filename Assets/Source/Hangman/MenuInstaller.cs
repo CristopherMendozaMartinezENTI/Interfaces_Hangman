@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System;
 
-public class Installer : MonoBehaviour
+public class MenuInstaller : MonoBehaviour
 {
     [SerializeField] private RectTransform _CanvasParent;
 
