@@ -35,14 +35,14 @@ public class GameOverPanelView : View
         _playAgainButton
            .OnClickAsObservable()
            .Subscribe((_) => {
-
+               //
            })
            .AddTo(_disposables);
 
         _playAgainButton
             .OnClickAsObservable()
             .Subscribe((_) => {
-
+                //
             })
             .AddTo(_disposables);
     }
