@@ -9,14 +9,29 @@ public class GameOverPanelView : View
 {
     private GameOverPanelViewModel _viewModel;
 
-    [SerializeField] private Button _playAgainButton;
+    [SerializeField] private Button _tryAgainButton;
     [SerializeField] private Button _toMenuButton;
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private TMP_Text ResultText;
+    [SerializeField] private TMP_Text TimeText;
 
     public override void SetViewModel(ViewModel viewModel)
     {
         _viewModel = viewModel as GameOverPanelViewModel;
+
+        _tryAgainButton
+         .OnClickAsObservable()
+         .Subscribe((_) => {
+             _viewModel.TryAgainPressed.Execute();
+           })
+         .AddTo(_disposables);
+
+        _toMenuButton
+            .OnClickAsObservable()
+            .Subscribe((_) => {
+                _viewModel.ToMenuPressed.Execute();
+            })
+            .AddTo(_disposables);
 
         _viewModel
          .Score
@@ -32,18 +47,11 @@ public class GameOverPanelView : View
           })
           .AddTo(_disposables);
 
-        _playAgainButton
-           .OnClickAsObservable()
-           .Subscribe((_) => {
-               //
-           })
-           .AddTo(_disposables);
-
-        _playAgainButton
-            .OnClickAsObservable()
-            .Subscribe((_) => {
-                //
-            })
-            .AddTo(_disposables);
+        _viewModel
+       .Time
+       .Subscribe((time) => {
+           ResultText.text = time;
+       })
+       .AddTo(_disposables);
     }
 }

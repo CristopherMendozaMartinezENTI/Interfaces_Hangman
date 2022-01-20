@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 4108396355334249170}
   - component: {fileID: 1077449163044241494}
   m_Layer: 5
-  m_Name: 'ResetButton '
+  m_Name: 'TryAgainButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,6 +1274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3983984932934478229}
+  - component: {fileID: 2708599926654761573}
   m_Layer: 5
   m_Name: AddPanel
   m_TagString: Untagged
@@ -1302,6 +1303,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2708599926654761573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830174543372343411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4074137fc94704248a12fe0741d9dfc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _watchAgainButton: {fileID: 6802222812684551011}
+  _tryAgainButton: {fileID: 1077449163044241494}
+  _toMenuButton: {fileID: 2115618238240705821}
 --- !u!1 &7869659964446603562
 GameObject:
   m_ObjectHideFlags: 0
