@@ -40,10 +40,10 @@ public class GameInstaller : MonoBehaviour
         var toggleNotificationsUseCase = new ToggleNotificationsUseCase();
         var loginUseCase = new LoginUseCase(firebaseAuthenticationService);
 
-        var gamePanel = Instantiate(_gamePanelPrefab, _CanvasParent);
         var gameOverPanelView = Instantiate(_gameOverPanelPrefab, _gamePanelsParent);
         var pausePanelView = Instantiate(_pausePanelPrefab, _gamePanelsParent);
         var addPanelView = Instantiate(_addPanelPrefab, _gamePanelsParent);
+        var gamePanel = Instantiate(_gamePanelPrefab, _CanvasParent);
 
         gamePanel.Panel.SetAsFirstSibling();
 
