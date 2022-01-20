@@ -7,6 +7,8 @@ using UniRx;
 
 public class GamePanelView : View
 {
+    [SerializeField] private RectTransform _panel;
+    public RectTransform Panel { get => _panel; }
     [SerializeField] private Button _pauseButton;
     [SerializeField] private TMP_Text ScoreText;
 

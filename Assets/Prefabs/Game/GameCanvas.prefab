@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33941be58f788dd45b99c2ffa6da430e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _panel: {fileID: 4320121172964258138}
   _pauseButton: {fileID: 9223151582808641563}
   ScoreText: {fileID: 6055246064848618440}
 --- !u!1 &4402085911954758155

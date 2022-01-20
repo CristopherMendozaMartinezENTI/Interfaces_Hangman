@@ -6,12 +6,11 @@ using UniRx;
 public class GamePanelController : Controller
 {
     private readonly GamePanelViewModel _gamePanelViewModel;
-    private readonly AddPanelViewModel _addPanelViewModel;
     private readonly GameOverPanelViewModel _gameOverPanelViewModel;
     private readonly PausePanelViewModel _pausePanelViewModel;
+    private readonly AddPanelViewModel _addPanelViewModel;
 
-    public GamePanelController(GamePanelViewModel viewModel, AddPanelViewModel addPanelViewModel, 
-        GameOverPanelViewModel gameOverPanelViewModel, PausePanelViewModel pausePanelViewModel)
+    public GamePanelController(GamePanelViewModel viewModel, GameOverPanelViewModel gameOverPanelViewModel, PausePanelViewModel pausePanelViewModel, AddPanelViewModel addPanelViewModel)
     {
         _gamePanelViewModel = viewModel;
         _addPanelViewModel = addPanelViewModel;
@@ -31,4 +30,12 @@ public class GamePanelController : Controller
         Time.timeScale = 0;
         _pausePanelViewModel.IsVisible.Value = true;
     }
+
+
+    public void StartGame()
+    {
+        //
+    }
 }
+
+
