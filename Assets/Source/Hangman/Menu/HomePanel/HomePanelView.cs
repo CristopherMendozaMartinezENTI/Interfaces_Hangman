@@ -47,5 +47,12 @@ public class HomePanelView : View
                 _viewModel.EditUsernameButtonPressed.Execute();
             })
             .AddTo(_disposables);
+
+        _playButton
+            .OnClickAsObservable()
+            .Subscribe((_) => {
+                _viewModel.PlayButtonPressed.Execute();
+            })
+            .AddTo(_disposables);
     }
 }

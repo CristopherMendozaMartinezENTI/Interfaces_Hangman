@@ -30,14 +30,11 @@ public class MenuInstaller : MonoBehaviour
 
     private void Awake()
     {
-        var firebaseAuthenticationService = new FirebaseAuthenticationService();
-        var firestoreDatabaseService = new FirestoreService();
-        var eventDispatcherService = new EventDispatcherService();
-        var realtimeFirebaseService = new RealtimeFirebaseService();
-
-        ServiceLocator.Instance.RegisterService<AuthenticationService>(firebaseAuthenticationService);
-        ServiceLocator.Instance.RegisterService<DatabaseService>(firestoreDatabaseService);
-        ServiceLocator.Instance.RegisterService<IEventDispatcherService>(eventDispatcherService);
+        var firebaseAuthenticationService = ServiceLocator.Instance.GetService<AuthenticationService>();
+        var firestoreDatabaseService = ServiceLocator.Instance.GetService<DatabaseService>();
+        var eventDispatcherService = ServiceLocator.Instance.GetService<IEventDispatcherService>();
+        var realtimeFirebaseService = ServiceLocator.Instance.GetService<RealtimeDatabaseService>();
+        var sceneHandlerService = ServiceLocator.Instance.GetService<SceneHandlerService>();
 
         var authenticatorUseCase = new AuthenticateUseCase(firebaseAuthenticationService, eventDispatcherService);
 

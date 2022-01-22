@@ -13,5 +13,9 @@ public static class Constants {
     public const string STRING_DB_COLLECTION_USERS = "users";
     public const string STRING_DB_FIELD_USERS_USERNAME = "username";
     public const string STRING_MSG_TOPIC = "Prueba";
+    public const string STRING_GAMETOKEN = "GameToken";
+    public const string STRING_TRIES = "Tries";
+    public const int INT_MAXTRIES = 6;
+    public const int INT_EXTRATRIES = 6;
 }
 

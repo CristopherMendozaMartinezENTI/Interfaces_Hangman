@@ -21,8 +21,13 @@ public class HomePanelController : Controller
         _homePanelViewModel
             .EditUsernameButtonPressed
             .Subscribe((_) => {
-                //TODO: Hacer visible el menu de edit username
                 _editUsernamePanelViewModel.IsVisible.Value = true;
+            });
+
+        _homePanelViewModel
+            .PlayButtonPressed
+            .Subscribe((_) => {
+                OnPlayButtonPressed();
             });
     }
 
@@ -41,5 +46,10 @@ public class HomePanelController : Controller
         });
 
         ServiceLocator.Instance.GetService<IEventDispatcherService>().Dispatch<UserData>(userdata);
+    }
+
+    private void OnPlayButtonPressed()
+    {
+        ServiceLocator.Instance.GetService<SceneHandlerService>().LoadScene("Game");
     }
 }

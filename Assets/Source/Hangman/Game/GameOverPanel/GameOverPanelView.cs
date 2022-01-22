@@ -19,6 +19,13 @@ public class GameOverPanelView : View
     {
         _viewModel = viewModel as GameOverPanelViewModel;
 
+        _viewModel
+            .IsVisible
+            .Subscribe((isVisible) => {
+                gameObject.SetActive(isVisible);
+            })
+            .AddTo(_disposables);
+
         _tryAgainButton
          .OnClickAsObservable()
          .Subscribe((_) => {
@@ -50,7 +57,7 @@ public class GameOverPanelView : View
         _viewModel
        .Time
        .Subscribe((time) => {
-           ResultText.text = time;
+           TimeText.text = time;
        })
        .AddTo(_disposables);
     }

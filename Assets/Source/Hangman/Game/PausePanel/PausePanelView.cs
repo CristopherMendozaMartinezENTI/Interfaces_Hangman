@@ -17,6 +17,13 @@ public class PausePanelView : View
     {
         _viewModel = viewModel as PausePanelViewModel;
 
+        _viewModel
+            .IsVisible
+            .Subscribe((isVisible) => {
+                gameObject.SetActive(isVisible);
+            })
+            .AddTo(_disposables);
+
         _resumeButton
           .OnClickAsObservable()
           .Subscribe((_) => {

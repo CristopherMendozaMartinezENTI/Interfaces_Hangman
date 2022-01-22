@@ -14,14 +14,14 @@ public class GameOverPanelController : Controller
         _gameOverPanelViewModel
             .TryAgainPressed
             .Subscribe((_) => {
-                //
+                ServiceLocator.Instance.GetService<SceneHandlerService>().LoadScene("Game");
             })
             .AddTo(_disposables);
 
         _gameOverPanelViewModel
             .ToMenuPressed
             .Subscribe((_) => {
-                //
+                ServiceLocator.Instance.GetService<SceneHandlerService>().LoadScene("Menu");
             })
             .AddTo(_disposables);
     }

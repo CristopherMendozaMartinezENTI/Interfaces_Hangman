@@ -16,6 +16,13 @@ public class AddPanelView : View
     {
         _viewModel = viewModel as AddPanelViewModel;
 
+        _viewModel
+            .IsVisible
+            .Subscribe((isVisible) => {
+                gameObject.SetActive(isVisible);
+            })
+            .AddTo(_disposables);
+
         _watchAgainButton
           .OnClickAsObservable()
           .Subscribe((_) => {

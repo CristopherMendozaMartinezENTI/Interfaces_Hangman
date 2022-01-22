@@ -14,21 +14,21 @@ public class PausePanelController : Controller
         _pausePanelViewModel
             .ResumePressed
             .Subscribe((_) => {
-                //
+                OnExitPauseMenu();
             })
             .AddTo(_disposables);
 
         _pausePanelViewModel
             .ResetPressed
             .Subscribe((_) => {
-                //
+                ServiceLocator.Instance.GetService<SceneHandlerService>().LoadScene("Game");
             })
             .AddTo(_disposables);
 
          _pausePanelViewModel
             .ToMenuPressed
             .Subscribe((_) => {
-                //
+                ServiceLocator.Instance.GetService<SceneHandlerService>().LoadScene("Menu");
             })
             .AddTo(_disposables);
 
